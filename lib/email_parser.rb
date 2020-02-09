@@ -4,19 +4,18 @@
 # or whitespace (' ').
 require "pry"
 class EmailAddressParser
-  #@@all = []
   attr_accessor :email_addresses
+
   def initialize(csv)
-    @email_addresses = parse(csv)
+    @email_addresses = csv
     #binding.pry
   end
-  def parse(file_in)
-    commas(file_in)
-    whitespace(file_in)
+
+  def parse
     answer = []
-    answer = whitespace(commas(file_in)).flatten
-    answer
-    binding.pry
+    answer = remove_duplicates(@email_addresses)
+    answer.flatten
+    #binding.pry
   end
 
   def commas(all_one_string)
@@ -30,7 +29,10 @@ class EmailAddressParser
     end
     #binding.pry
   end
-
+  def remove_duplicates(file_in)
+    whitespace(commas(file_in)).uniq
+    #binding.pry
+  end
 
 
 end
