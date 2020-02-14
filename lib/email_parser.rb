@@ -15,7 +15,7 @@ class EmailAddressParser
   
   def parse 
     @cvs_emails.split.map {|address| address.split (",")}
-    .flatten.uniq
+    .uniq
   end
 
 end
